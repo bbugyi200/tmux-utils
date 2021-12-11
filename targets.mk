@@ -27,7 +27,7 @@ define runtests
 		-vv \
 		--cov=src/tmux_utils \
 		--cov-config=setup.cfg \
-		--cov-fail-under=80 \
+		--cov-fail-under=35 \
 		--cov-report=xml:coverage.xml \
 		--cov-report=term-missing \
 		--cov-branch \
