@@ -1,3 +1,4 @@
+bugyi.lib ~= 0.9
 pydantic
 pylogutils
 python-clap
