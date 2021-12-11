@@ -4,8 +4,9 @@
 #
 #    "make update-requirements"
 #
-bugyi.lib==0.8.0
+bugyi.lib==0.9.0
     # via
+    #   -r requirements.in
     #   pylogutils
     #   python-clap
 colorama==0.4.4
