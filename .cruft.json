@@ -1,0 +1,23 @@
+{
+  "template": "https://github.com/bbugyi200/cc-python",
+  "commit": "3e21d398fe0f49c7920a56a3567a1275ee4bcf38",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "author": "Bryan M Bugyi",
+      "email": "bryanbugyi34@gmail.com",
+      "github_username": "bbugyi200",
+      "git_org_name": "bbugyi200",
+      "git_repo_name": "tmux-utils",
+      "package_name": "tmux_utils",
+      "pypi_package_name": "tmux_utils",
+      "read_the_docs_domain": "tmux_utils",
+      "package_description": "Helper scripts for working with tmux more efficiently.",
+      "package_type": "application",
+      "_template": "https://github.com/bbugyi200/cc-python",
+      "package_path": "tmux_utils",
+      "package_module": "tmux_utils"
+    }
+  },
+  "directory": null
+}
