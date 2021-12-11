@@ -9,12 +9,12 @@ from pydantic.dataclasses import dataclass
 
 
 @dataclass(frozen=True)
-class Arguments(clap.Arguments):
+class _Arguments(clap.Arguments):
     window: str
     session_name: str
 
 
-def parse_cli_args(argv: Sequence[str]) -> Arguments:
+def _parse_cli_args(argv: Sequence[str]) -> _Arguments:
     parser = clap.Parser()
     parser.add_argument(
         "window",
@@ -31,10 +31,10 @@ def parse_cli_args(argv: Sequence[str]) -> Arguments:
     args = parser.parse_args(argv[1:])
     kwargs = vars(args)
 
-    return Arguments(**kwargs)
+    return _Arguments(**kwargs)
 
 
-def run(args: Arguments) -> int:
+def _run(args: _Arguments) -> int:
     log = Logger(__name__)
 
     ps = sp.check_output(["tmux", "ls"])
@@ -58,4 +58,4 @@ def run(args: Arguments) -> int:
     return 0
 
 
-main = clap.main_factory(parse_cli_args, run)
+main = clap.main_factory(_parse_cli_args, _run)

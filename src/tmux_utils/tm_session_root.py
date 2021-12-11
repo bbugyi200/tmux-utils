@@ -12,14 +12,14 @@ from pydantic.dataclasses import dataclass
 
 
 @dataclass(frozen=True)
-class Arguments(clap.Arguments):
+class _Arguments(clap.Arguments):
     get: bool
     put: bool
     session_name: str
     root_dir: Optional[str]
 
 
-def parse_cli_args(argv: Sequence[str]) -> Arguments:
+def _parse_cli_args(argv: Sequence[str]) -> _Arguments:
     parser = clap.Parser()
     exgroup = parser.add_mutually_exclusive_group()
     exgroup.add_argument(
@@ -49,10 +49,10 @@ def parse_cli_args(argv: Sequence[str]) -> Arguments:
     args = parser.parse_args(argv[1:])
     kwargs = vars(args)
 
-    return Arguments(**kwargs)
+    return _Arguments(**kwargs)
 
 
-def run(args: Arguments) -> int:
+def _run(args: _Arguments) -> int:
     log = Logger(__name__).bind_fargs(locals())
 
     fpath = "{}/default-dirs.pickle".format(xdg.init_full_dir("data"))
@@ -83,4 +83,4 @@ def run(args: Arguments) -> int:
     return 1
 
 
-main = clap.main_factory(parse_cli_args, run)
+main = clap.main_factory(_parse_cli_args, _run)
