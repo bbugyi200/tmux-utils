@@ -104,6 +104,7 @@ setup(
     entry_points={
         "console_scripts": [
             "tm-sessions = tmux_utils.tm_sessions:main",
+            "tm-session-root = tmux_utils.tm_session_root:main",
         ]
     },
     include_package_data=True,
