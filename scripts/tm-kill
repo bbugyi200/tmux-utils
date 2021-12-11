@@ -1,0 +1,12 @@
+#!/bin/bash
+
+socket_name="$(tm-socket)"
+
+if [[ -n "$socket_name" ]]; then
+    session_name=$(tm-session-name)
+    prompt="Confirm 'kill-session'? (y/n)"
+
+    tmux -L "$socket_name" confirm-before -p "$prompt" " run-shell 'tmux switch-client -l || tmux switch-client -n || tmuxinator stop ${session_name}'; run-shell 'tmuxinator stop $session_name'; refresh-client -S"
+else
+    exit 1
+fi

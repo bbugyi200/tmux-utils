@@ -1,0 +1,79 @@
+#!/bin/bash
+
+source bugyi.sh
+
+readonly LAST_WINDOW_NAME_FILE=/tmp/tmux_break_join.last
+
+function run() {
+    if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+        show_usage
+        return 0
+    fi
+
+    if [[ $# -ne 2 ]]; then
+        die "$(show_usage)" 2
+    fi
+
+    local opt="$1"
+    shift
+
+    local pane_spec="$1"
+    shift
+
+    local window="${pane_spec%%.*}"
+    if [[ "${window}" == "$(window_index)" ]]; then
+        die "Invalid window index ('${window}'). Cannot join a window to itself."
+    fi
+
+    local real_opt
+    local dying_window
+    local target_window
+    if [[ "${opt}" == "--send" ]]; then
+        real_opt="-t"
+        dying_window="$(window_index)"
+        target_window="${pane_spec}"
+    elif [[ "${opt}" == "--summon" ]]; then
+        real_opt="-s"
+        tmux select-pane -t "$(window_index)".bottom-right
+
+        dying_window="${pane_spec}"
+        target_window="$(window_index)"
+    else
+        emsg "Bad option: ${opt}"
+        die "$(show_usage)" 2
+    fi
+
+    local orig_target_panes="$(window_panes "${target_window}")"
+    local first_new_pane=$((orig_target_panes + 1))
+
+    tmux display-message \
+        -t "${dying_window}" \
+        -p '#{window_name}' >"${LAST_WINDOW_NAME_FILE}"
+    while [[ "$(window_panes "${dying_window}")" -gt 1 ]]; do
+        tmux join-pane -d -h "${real_opt}" "${pane_spec}"
+    done
+
+    tmux join-pane -h "${real_opt}" "${pane_spec}"
+    tmux select-pane -t "${first_new_pane}"
+    tm-fix-layout
+}
+
+function window_panes() {
+    local window="$1"
+    shift
+    tmux display-message -t "${window}" -p '#{window_panes}'
+}
+
+function window_index() {
+    tmux display-message -p '#{window_index}'
+}
+
+function show_usage() {
+    pyprintf "usage: {0} --send PANE\n{1}{0} --summon PANE\n" \
+        "${SCRIPTNAME}" \
+        "       "
+}
+
+if [[ "${SCRIPTNAME}" == "$(basename "${BASH_SOURCE[0]}")" ]]; then
+    run "$@"
+fi

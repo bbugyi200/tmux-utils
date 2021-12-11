@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source bugyi.sh
+
+function run() {
+    tm-init-remote athena "${ATHENAS_DDNS_HOSTNAME}" "${ATHENAS_SSH_PORT}"
+}
+
+if [[ "${SCRIPTNAME}" == "$(basename "${BASH_SOURCE[0]}")" ]]; then
+    run "$@"
+fi
