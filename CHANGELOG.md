@@ -12,3 +12,9 @@ The format is based on [Keep a Changelog], and this project adheres to
 ## [Unreleased](https://github.com/bbugyi200/tmux-utils/compare/0.1.0...HEAD)
 
 No notable changes have been made.
+
+## [0.1.0](https://github.com/bbugyi200/tmux-utils/releases/tag/0.1.0) - 2021-12-11
+
+### Miscellaneous
+
+* First release.
