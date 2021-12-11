@@ -103,7 +103,7 @@ setup(
     description=DESCRIPTION,
     entry_points={
         "console_scripts": [
-            "tmux_utils = tmux_utils.cli:main",
+            "tm-sessions = tmux_utils.tm_sessions:main",
         ]
     },
     include_package_data=True,
