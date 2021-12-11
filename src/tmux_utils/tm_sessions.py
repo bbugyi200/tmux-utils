@@ -9,7 +9,7 @@ from pydantic.dataclasses import dataclass
 
 
 @dataclass(frozen=True)
-class Arguments:
+class Arguments(clap.Arguments):
     window: str
     session_name: str
 
@@ -35,17 +35,17 @@ def parse_cli_args(argv: Sequence[str]) -> Arguments:
 
 
 def run(args: Arguments) -> int:
-    log = Logger(__name__).bind_fargs(locals())
+    log = Logger(__name__)
 
     ps = sp.check_output(["tmux", "ls"])
     out = ps.decode().strip()
 
-    _sessions = out.split("\n")
-    log.debug("_sessions: {}", _sessions)
+    raw_sessions = out.split("\n")
+    log.debug(f"raw_sessions={raw_sessions}")
     log.debug(f"args={args}")
 
     sessions = []
-    for S in _sessions:
+    for S in raw_sessions:
         T = S[: S.index(":")]
 
         if T == args.session_name:
@@ -59,3 +59,7 @@ def run(args: Arguments) -> int:
 
 
 main = clap.main_factory(parse_cli_args, run)
+
+
+if __name__ == "__main__":
+    main()
