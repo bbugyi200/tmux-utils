@@ -14,21 +14,21 @@ The format is based on [Keep a Changelog], and this project adheres to
 No notable changes have been made.
 
 
-## [0.1.3](https://github.com/bbugyi200/python-lib/compare/0.1.2...0.1.3) - 2021-12-11
+## [0.1.3](https://github.com/bbugyi200/tmux-utils/compare/0.1.2...0.1.3) - 2021-12-11
 
 ### Fixed
 
 * Use 'eval' instead of 'source' with `shlib`.
 
 
-## [0.1.2](https://github.com/bbugyi200/python-lib/compare/0.1.1...0.1.2) - 2021-12-11
+## [0.1.2](https://github.com/bbugyi200/tmux-utils/compare/0.1.1...0.1.2) - 2021-12-11
 
 ### Fixed
 
 * Dynamically load shell libraries using `shlib` instead of sourcing them directly.
 
 
-## [0.1.1](https://github.com/bbugyi200/python-lib/compare/0.1.0...0.1.1) - 2021-12-11
+## [0.1.1](https://github.com/bbugyi200/tmux-utils/compare/0.1.0...0.1.1) - 2021-12-11
 
 ### Fixed
 
