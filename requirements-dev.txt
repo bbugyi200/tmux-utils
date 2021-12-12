@@ -22,11 +22,12 @@ binaryornot==0.4.4
     # via cookiecutter
 black==21.12b0
     # via -r requirements-dev.in
-bugyi.lib==0.9.0
+bugyi.lib==0.10.0
     # via
-    #   -r requirements.in
     #   pylogutils
     #   python-clap
+bugyi.tools==0.1.0
+    # via -r requirements.in
 bump2version==1.0.1
     # via -r requirements-dev.in
 certifi==2021.10.8
@@ -148,6 +149,7 @@ pycodestyle==2.8.0
 pydantic==1.8.2
     # via
     #   -r requirements.in
+    #   bugyi.tools
     #   pylogutils
     #   python-clap
 pydocstyle[toml]==6.1.1
@@ -161,6 +163,7 @@ pylint==2.12.2
 pylogutils==0.1.4
     # via
     #   -r requirements.in
+    #   bugyi.tools
     #   python-clap
 pyparsing==3.0.6
     # via packaging
@@ -175,7 +178,9 @@ pytest-cov==3.0.0
 pytest-mock==3.6.1
     # via -r requirements-dev.in
 python-clap==0.2.2
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   bugyi.tools
 python-dateutil==2.8.2
     # via
     #   arrow

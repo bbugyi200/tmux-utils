@@ -7,7 +7,7 @@
 # shellcheck disable=SC2154
 
 # ---------- Modules ----------
-source bugyi.sh
+source $(shlib)
 
 # ---------- CLI Arguments ----------
 socket_name="$1"; shift

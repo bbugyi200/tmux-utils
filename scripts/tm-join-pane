@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source bugyi.sh
+source $(shlib)
 
 readonly LAST_WINDOW_NAME_FILE=/tmp/tmux_break_join.last
 

@@ -4,7 +4,7 @@
 #  Initialize Default Tmuxinator Session on a Remote Machine
 ###############################################################################
 
-source bugyi.sh
+source $(shlib)
 
 function run() {
     local host="$1"
