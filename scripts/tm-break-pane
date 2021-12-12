@@ -5,7 +5,7 @@ Used to break one or more tmux panes out of the current window and into their
 own, new window.
 EOM
 
-source $(shlib)
+eval "$(shlib)"
 
 readonly LAST_WINDOW_NAME_FILE=/tmp/tmux_break_join.last
 

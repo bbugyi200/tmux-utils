@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(shlib)
+eval "$(shlib)"
 
 function run() {
     tm-init-remote athena "${ATHENAS_DDNS_HOSTNAME}" "${ATHENAS_SSH_PORT}"

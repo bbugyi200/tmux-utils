@@ -4,7 +4,7 @@ read -r -d '' doc << EOM
 Wrapper for Tmuxinator
 EOM
 
-source $(shlib)
+eval "$(shlib)"
 
 # ---------- Command-line Arguments ----------
 export USAGE_GRAMMAR=(
