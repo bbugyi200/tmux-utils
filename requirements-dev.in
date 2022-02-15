@@ -5,19 +5,20 @@ pytest-mock
 syrupy
 tox
 tox-pyenv
-typeguard
+-e file:.#egg=tmux_utils>=0.dev
 
 ### Lint
 black
+cogapp ~= 3.3
 flake8
 isort
-mypy
+mypy != 0.920, != 0.921, != 0.930  # workaround for https://github.com/samuelcolvin/pydantic/pull/3175
 pydocstyle[toml]
 pylint
 
 ### Docs
 m2r2
-sphinx
+sphinx != 4.4.*  # ATTOW, 'sphinx==4.4.0' requires a 'importlib-metadata' version that conflicts with what 'cruft' requires.
 sphinx-rtd-theme
 sphinx-autodoc-typehints
 

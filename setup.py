@@ -19,9 +19,9 @@ from setuptools import find_namespace_packages, setup
 ###############################################################################
 DESCRIPTION = "Helper scripts for working with tmux more efficiently."
 SUPPORTED_PYTHON_VERSIONS = [
-    (3, 7),
     (3, 8),
     (3, 9),
+    (3, 10),
 ]
 USE_SCM_VERSION = {"fallback_version": "0.1.3"}
 
@@ -41,16 +41,6 @@ def install_requires() -> List[str]:
         A list of this project's runtime Python dependencies.
     """
     return list(_requires("requirements.in"))
-
-
-def tests_require() -> List[str]:
-    """Test suite requirements.
-
-    Returns:
-        A list of the Python dependencies this project requires in order to run
-        its test suite.
-    """
-    return list(_requires("requirements-dev.in"))
 
 
 def _requires(reqtxt_basename: str) -> Iterator[str]:
@@ -117,8 +107,6 @@ setup(
     packages=find_namespace_packages(where="src"),
     python_requires=PYTHON_REQUIRES,
     scripts=get_scripts(),
-    test_suite="tests",
-    tests_require=tests_require(),
     url="https://github.com/bbugyi200/tmux-utils",
     use_scm_version=USE_SCM_VERSION,
     zip_safe=False,

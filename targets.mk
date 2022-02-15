@@ -7,10 +7,13 @@ SHELL := /bin/bash
 CRUFT = $(PYTHON) -m cruft
 DOCS_SOURCE := ./docs/source
 DOCS_BUILD_DIR := ./docs/build
+MIN_TEST_COV := 35
 PIP = $(PYTHON) -m pip
 PIP_COMPILE = $(PYTHON) -m piptools compile --allow-unsafe --no-emit-index-url -q --no-emit-trusted-host
 PIP_SYNC = $(PYTHON) -m piptools sync
 PYTHON = $(SOURCE_VENV) python
+PYTHON_VERSION := 3.8
+RENDER_ALL_COGS = $(SOURCE_VENV) ./bin/render_all_cogs
 SOURCE_VENV = source $(VENV_ACTIVATE);
 SPHINX_APIDOC = $(SOURCE_VENV) sphinx-apidoc
 SPHINX_BUILD = $(SOURCE_VENV) sphinx-build
@@ -27,21 +30,29 @@ define runtests
 		-vv \
 		--cov=src/tmux_utils \
 		--cov-config=setup.cfg \
-		--cov-fail-under=35 \
+		--cov-fail-under=$(MIN_TEST_COV) \
 		--cov-report=xml:coverage.xml \
 		--cov-report=term-missing \
 		--cov-branch \
 		--doctest-modules \
 		--doctest-report ndiff \
-		# Don't remove this comment! It allows us to end the last CLI option with a backslash.
+		# Don't remove this comment!
 endef
 
 .PHONY: all
 all:  ## Build the package, build the docs, run all tests, and run all linters.
-all: build build-docs lint test
+all: build build-docs cogs lint test
+
+.PHONY: cogs
+cogs: sync-dev-requirements
+	$(RENDER_ALL_COGS)
 
 .PHONY: lint
-lint: black isort pydocstyle flake8 mypy pylint ## Run all linting checks.
+lint: black isort pydocstyle flake8 mypy pylint quick-lints  ## Run all linting checks.
+
+.PHONY: quick-lints
+quick-lints: sync-dev-requirements  ## Run miscellaneous linting tasks.
+	$(SOURCE_VENV) ./bin/quick-lints
 
 .PHONY: black
 black: sync-dev-requirements  ## Run black checks.
@@ -65,8 +76,11 @@ flake8: sync-dev-requirements  ## Run flake8 checks.
 
 .PHONY: mypy
 mypy: sync-dev-requirements  ## Run mypy checks.
+	@# HACK: Because mypy's cache has been terrible lately.
+	@rm -rf .mypy_cache
 	$(PYTHON) -m mypy src
-	$(PYTHON) -m mypy tests
+	@# HACK: Fixes weird numpy error that seemed to happen randomly.
+	bash -c "$(SOURCE_VENV) { python -m mypy tests || python -m mypy tests; }"
 
 .PHONY: pylint
 pylint: sync-dev-requirements  ## Run pylint checks.
@@ -137,7 +151,7 @@ check-requirements: ## Check if requirements*.txt files are up-to-date.
 ### Bootstraps virtual environment for first use.
 $(VENV_ACTIVATE):
 	python3 -m pip install --user virtualenv
-	python3 -m virtualenv --python /pyenv/shims/python3.7 $(VENV)
+	python3 -m virtualenv --python /pyenv/shims/python$(PYTHON_VERSION) $(VENV)
 	$(PIP) install -U pip pip-tools
 
 .PHONY: check-cc
@@ -148,6 +162,11 @@ check-cc: sync-dev-requirements  ## Check if this project needs to be synced wit
 update-cc: sync-dev-requirements
 update-cc: ## Update the project to the latest version of the cookiecutter
 	$(CRUFT) update --not-strict -c master
+
+.PHONY: update-snapshots
+update-snapshots: ## Update pytest snapshots
+update-snapshots: sync-dev-requirements
+	$(PYTHON) -m pytest -v --snapshot-update src tests
 
 .PHONY: dev-shell
 dev-shell: sync-dev-requirements  ## Launch a bash shell with the python environment for this project. If docker is enabled, this launches a shell inside the container.
