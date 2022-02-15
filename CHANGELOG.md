@@ -9,9 +9,17 @@ The format is based on [Keep a Changelog], and this project adheres to
 [Semantic Versioning]: https://semver.org/
 
 
-## [Unreleased](https://github.com/bbugyi200/tmux-utils/compare/0.1.3...HEAD)
+## [Unreleased](https://github.com/bbugyi200/tmux-utils/compare/0.1.4...HEAD)
 
 No notable changes have been made.
+
+
+## [0.1.4](https://github.com/bbugyi200/tmux-utils/compare/0.1.3...0.1.4) - 2022-02-15
+
+### Changed
+
+* Migrated package to use `clack` in-place of `clap`.
+* Migrated package to use `logrus` in-place of `logutils`.
 
 
 ## [0.1.3](https://github.com/bbugyi200/tmux-utils/compare/0.1.2...0.1.3) - 2021-12-11
