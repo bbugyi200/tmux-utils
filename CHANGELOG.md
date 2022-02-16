@@ -9,9 +9,16 @@ The format is based on [Keep a Changelog], and this project adheres to
 [Semantic Versioning]: https://semver.org/
 
 
-## [Unreleased](https://github.com/bbugyi200/tmux-utils/compare/0.1.4...HEAD)
+## [Unreleased](https://github.com/bbugyi200/tmux-utils/compare/0.1.5...HEAD)
 
 No notable changes have been made.
+
+
+## [0.1.5](https://github.com/bbugyi200/tmux-utils/compare/0.1.4...0.1.5) - 2022-02-15
+
+### Fixed
+
+* Fix bash scripts by upgrading `bugyi.tools` to `v0.2.2`.
 
 
 ## [0.1.4](https://github.com/bbugyi200/tmux-utils/compare/0.1.3...0.1.4) - 2022-02-15
