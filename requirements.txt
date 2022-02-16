@@ -5,7 +5,9 @@
 #    "make update-requirements"
 #
 bolton-clack==0.3.2
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   bugyi-tools
 bolton-eris==0.2.3
     # via bolton-clack
 bolton-ion==0.1.0
@@ -14,6 +16,7 @@ bolton-logrus==0.1.0
     # via
     #   -r requirements.in
     #   bolton-clack
+    #   bugyi-tools
 bolton-metaman==0.1.1
     # via
     #   bolton-eris
@@ -22,48 +25,21 @@ bolton-typist==0.2.0
     # via
     #   bolton-clack
     #   bolton-eris
-bugyi.lib==0.11.0
-    # via
-    #   pylogutils
-    #   python-clap
-    #   python-logrus
-bugyi.tools==0.2.1
+bugyi-tools==0.2.2
     # via -r requirements.in
 colorama==0.4.4
-    # via
-    #   pylogutils
-    #   python-logrus
-    #   rich
+    # via rich
 commonmark==0.9.1
     # via rich
 pydantic==1.9.0
-    # via
-    #   bolton-clack
-    #   bugyi.tools
-    #   pylogutils
-    #   python-clap
+    # via bolton-clack
 pygments==2.11.2
     # via rich
-pylogutils==0.1.4
-    # via bugyi.tools
-python-clap==0.5.0
-    # via bugyi.tools
-python-dateutil==2.8.2
-    # via bugyi.lib
-python-logrus==0.1.0
-    # via python-clap
-python-result==0.2.1
-    # via bugyi.lib
 pyyaml==6.0
     # via bolton-clack
 rich==10.16.2
-    # via bugyi.tools
-six==1.16.0
-    # via python-dateutil
+    # via bugyi-tools
 structlog==21.5.0
-    # via
-    #   bolton-logrus
-    #   pylogutils
-    #   python-logrus
+    # via bolton-logrus
 typing-extensions==4.1.1
     # via pydantic

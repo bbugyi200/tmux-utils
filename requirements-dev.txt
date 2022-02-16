@@ -25,6 +25,7 @@ black==22.1.0
 bolton-clack==0.3.2
     # via
     #   -r requirements.in
+    #   bugyi-tools
     #   tmux-utils
 bolton-eris==0.2.3
     # via bolton-clack
@@ -34,6 +35,7 @@ bolton-logrus==0.1.0
     # via
     #   -r requirements.in
     #   bolton-clack
+    #   bugyi-tools
     #   tmux-utils
 bolton-metaman==0.1.1
     # via
@@ -43,12 +45,7 @@ bolton-typist==0.2.0
     # via
     #   bolton-clack
     #   bolton-eris
-bugyi.lib==0.11.0
-    # via
-    #   pylogutils
-    #   python-clap
-    #   python-logrus
-bugyi.tools==0.2.1
+bugyi-tools==0.2.2
     # via
     #   -r requirements.in
     #   tmux-utils
@@ -70,10 +67,7 @@ click==8.0.3
 cogapp==3.3.0
     # via -r requirements-dev.in
 colorama==0.4.4
-    # via
-    #   pylogutils
-    #   python-logrus
-    #   rich
+    # via rich
 colored==1.4.3
     # via syrupy
 commonmark==0.9.1
@@ -168,11 +162,7 @@ py==1.11.0
 pycodestyle==2.8.0
     # via flake8
 pydantic==1.9.0
-    # via
-    #   bolton-clack
-    #   bugyi.tools
-    #   pylogutils
-    #   python-clap
+    # via bolton-clack
 pydocstyle[toml]==6.1.1
     # via -r requirements-dev.in
 pyflakes==2.4.0
@@ -183,8 +173,6 @@ pygments==2.11.2
     #   sphinx
 pylint==2.12.2
     # via -r requirements-dev.in
-pylogutils==0.1.4
-    # via bugyi.tools
 pyparsing==3.0.7
     # via packaging
 pytest==6.2.5
@@ -197,16 +185,8 @@ pytest-cov==3.0.0
     # via -r requirements-dev.in
 pytest-mock==3.7.0
     # via -r requirements-dev.in
-python-clap==0.5.0
-    # via bugyi.tools
 python-dateutil==2.8.2
-    # via
-    #   arrow
-    #   bugyi.lib
-python-logrus==0.1.0
-    # via python-clap
-python-result==0.2.1
-    # via bugyi.lib
+    # via arrow
 python-slugify==5.0.2
     # via cookiecutter
 pytz==2021.3
@@ -218,7 +198,7 @@ requests==2.27.1
     #   cookiecutter
     #   sphinx
 rich==10.16.2
-    # via bugyi.tools
+    # via bugyi-tools
 setuptools-scm==6.4.2
     # via -r requirements-dev.in
 six==1.16.0
@@ -255,10 +235,7 @@ sphinxcontrib-qthelp==1.0.3
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
 structlog==21.5.0
-    # via
-    #   bolton-logrus
-    #   pylogutils
-    #   python-logrus
+    # via bolton-logrus
 syrupy==1.7.3
     # via -r requirements-dev.in
 text-unidecode==1.3
